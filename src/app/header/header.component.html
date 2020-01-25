@@ -1,0 +1,18 @@
+<header class="header">
+  <a href="/" class="header-title-link">
+    <h1 class="header-title">News Portal</h1>
+  </a>
+</header>
+
+<div class="header-main">
+  if !user
+  +headerItem({href: "login", text: "Login"})
+  +headerItem({href: "signup", text: "Sign up"})
+  else
+  - const email = (user.local && user.local.email) || (user.facebook && user.facebook.email);
+  +headerItem({text: `Hello ${email}`, href: "profile"})
+  +headerItem({href: "logout", text: "Log out"})
+
+
+</div>
+<p>header works! {{ newsSource }}</p>
