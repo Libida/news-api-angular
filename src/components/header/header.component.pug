@@ -1,0 +1,11 @@
+header.header.d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
+  a(href="/").header-title-link.mr-md-auto
+    h1.header-title.font-weight-normal News Portal {{ newsSource}}
+
+  .header-main
+    ul.my-2.my-md-0.mr-md-3.list.list-unstyled.list-inline
+      li(*ngFor="let headerItem of headerItems; let last = last;").list-inline-item
+        //a([href]="headerItem.href").header-main-item [class=["header-main-item", last && "btn btn-outline-primary"]) {{headerItem.text}}
+        a([href]="headerItem.href", [class]="headerItem.href").header-main-item {{headerItem.text}}
+
+
