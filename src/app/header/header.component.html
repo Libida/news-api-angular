@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="row header-section header-section_top">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <a href="/" class="header-section__part">
+              <h1 class="header-section_top__logo">
+                News Portal
+              </h1>
+            </a>
+          </div>
+          <div class="col-6">
+            <ul class="header-section__list header-section_top-auth">
+              <li *ngFor="let headerItem of headerItemsUnauthorised; let isLast = last;" class="list-inline-item">
+                <a [href]="headerItem.href" [class.btn]="isLast"
+                   [class.btn-outline-primary]="isLast">{{headerItem.text}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row header-section header-section_middle">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>{{ newsSource}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row header-section header-section_bottom">
+    <div class="col-sm-12">
+      <div class="container">
+        <app-sidebar></app-sidebar>
+      </div>
+    </div>
+  </div>
+</header>

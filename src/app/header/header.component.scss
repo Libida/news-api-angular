@@ -1,0 +1,39 @@
+@import "../../style";
+
+.header-section {
+  margin: 0;
+  box-shadow: $box-shadow-sm;
+  border-bottom: $border-width solid $border-color;
+  background-color: $white;
+  padding: $grid-gutter-width;
+
+  //  .header-section__content {
+  //    display: flex;
+  //    align-items: center;
+  //  }
+}
+
+.header-section__list {
+  @include list-unstyled();
+  margin: 0;
+}
+
+.header-section_top {
+  .row {
+    justify-content: space-between;
+  }
+
+  .header-section_top-auth {
+    text-align: right;
+  }
+}
+
+.header-section_top__logo {
+  font-weight: normal;
+}
+
+.header-section_middle {
+  h2 {
+    text-align: center;
+  }
+}
