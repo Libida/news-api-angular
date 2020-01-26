@@ -1,3 +1,10 @@
+# Demo
+
+https://libida.github.io/news-api-angular/
+
+# gh-pages
+`sudo npm run deploy`
+
 # AngularTest
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
