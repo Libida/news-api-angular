@@ -15,9 +15,10 @@ import { NewsListComponent } from './news/news-list/news-list.component';
 import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
-  {path: '', component: NewsListComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: '404', component: NotFoundComponent},
+  {path: 'news', component: NewsListComponent, pathMatch: 'full'},
+  {path: 'contact', component: ContactComponent, pathMatch: 'full'},
+  {path: '', redirectTo: 'news', pathMatch: 'full'},
+  {path: '404', component: NotFoundComponent, pathMatch: 'full'},
   {path: '**', redirectTo: '/404'},
 ];
 
@@ -45,4 +46,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {}
