@@ -10,8 +10,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { InputComponent } from './input/input.component';
 import { FooterComponent } from './footer/footer.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
+import { ContactComponent } from './contact/contact.component';
+
+const appRoutes: Routes = [
+  {path: '', component: NewsListComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'},
+];
 
 @NgModule({
   declarations: [
@@ -21,13 +29,17 @@ import { NewsListComponent } from './news/news-list/news-list.component';
     SidebarComponent,
     InputComponent,
     FooterComponent,
-    PageNotFoundComponent,
+    NotFoundComponent,
     NewsListComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(
+      appRoutes
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
