@@ -1,0 +1,14 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: whitesmoke;
+  margin-bottom: $footer-height;
+}
+
+%section {
+  box-shadow: $box-shadow-sm;
+  background-color: $white;
+}
