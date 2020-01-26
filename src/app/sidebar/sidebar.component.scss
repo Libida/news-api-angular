@@ -1,0 +1,23 @@
+@import "../../style";
+
+.row_sidebar {
+  align-items: center;
+  justify-content: space-between;
+
+  .col-12 {
+    margin-top: $grid-gutter-width/4;
+    margin-bottom: $grid-gutter-width/4;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.col_filter,
+.col_add-article {
+  @include media-breakpoint-up(lg) {
+    text-align: right;
+  }
+}

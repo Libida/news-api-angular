@@ -1,16 +1,10 @@
 @import "../../style";
 
 .header-section {
-  margin: 0;
-  box-shadow: $box-shadow-sm;
-  border-bottom: $border-width solid $border-color;
-  background-color: $white;
-  padding: $grid-gutter-width;
-
-  //  .header-section__content {
-  //    display: flex;
-  //    align-items: center;
-  //  }
+  @extend %section;
+  border-bottom: $border-1;
+  padding-top: $grid-gutter-width;
+  padding-bottom: $grid-gutter-width;
 }
 
 .header-section__list {

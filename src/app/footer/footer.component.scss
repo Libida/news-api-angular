@@ -1,0 +1,17 @@
+@import "../../style";
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: $border-1;
+  height: $footer-height;
+  line-height: $footer-height;
+  font-size: 0.8rem;
+
+  @extend %section;
+}
+
+.col_powered {
+  text-align: right;
+}

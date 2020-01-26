@@ -8,6 +8,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { InputComponent } from './input/input.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { InputComponent } from './input/input.component';
     DropdownComponent,
     SidebarComponent,
     InputComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
