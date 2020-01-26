@@ -1,8 +1,8 @@
 <div class="container mt-4">
   <div class="row mb-2">
-    <div class="col-md-12">
+    <div class="col-12">
       <article *ngFor="let article of articles" class="news-article card mb-4 box-shadow">
-        <a class="news-article-link" [href]="article.url" target="_blank">
+        <div class="news-article-body" >
           <div class="news-article-additional-content">
             <img class="news-article-img" [src]="article.urlToImage" [alt]="article.title">
           </div>
@@ -10,10 +10,15 @@
             <h3 class="news-article-title">{{article.title}}</h3>
             <div class="mb-1 text-muted">{{article.publishedAt | date: 'medium'}}</div>
             <p class="news-article-location">{{article.description}}</p>
-            <a href="#">Read more...</a>
+            <a [href]="article.url" target="_blank">Read more...</a>
           </div>
-        </a>
+        </div>
       </article>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary btn-lg btn-block mb-4">Load more</button>
     </div>
   </div>
 </div>

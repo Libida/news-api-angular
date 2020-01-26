@@ -4,12 +4,10 @@
   position: relative;
 }
 
-.news-article-link {
+.news-article-body {
   @include media-breakpoint-up(lg) {
     display: flex;
   }
-  text-decoration: none;
-  color: black;
 }
 
 .news-article-additional-content {
