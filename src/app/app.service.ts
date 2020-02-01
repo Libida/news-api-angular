@@ -16,11 +16,17 @@ export class AppService {
   source = this.sourceDefaultValue;
   sources;
   articles;
+  createdByMe = false;
   sourceChange: Subject<Source> = new Subject<Source>();
+  createdByMeChange: Subject<boolean> = new Subject<boolean>();
 
   constructor() {
     this.sourceChange.subscribe((value) => {
       this.source = value;
+    });
+
+    this.createdByMeChange.subscribe((value) => {
+      this.createdByMe = value;
     });
   }
 
@@ -36,6 +42,10 @@ export class AppService {
 
   getSource(): Observable<Source> {
     return of(this.source);
+  }
+
+  toggleCreatedByMe() {
+    this.createdByMeChange.next(!this.createdByMe);
   }
 
   setSource(value: string) {
