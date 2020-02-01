@@ -1,10 +1,12 @@
 <div class="btn-group" dropdown>
   <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
           aria-controls="dropdown-basic">
-    Select Source <span class="caret"></span>
+    {{selectedText}} <span class="caret"></span>
   </button>
   <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
       role="menu" aria-labelledby="button-basic">
-    <li *ngFor="let dropdownItem of dropdownItems;"role="menuitem"><a class="dropdown-item" href="#">{{dropdownItem.text}}</a></li>
+    <li *ngFor="let dropdownItem of dropdownItems;"role="menuitem">
+      <a class="dropdown-item" (click)="onClick(dropdownItem.name)">{{dropdownItem.name}}</a>
+    </li>
   </ul>
 </div>
