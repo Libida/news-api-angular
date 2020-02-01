@@ -1,5 +1,9 @@
 @import "../../style";
 
+.sidebar {
+  @extend %section-extended;
+}
+
 .row_sidebar {
   align-items: center;
   justify-content: space-between;

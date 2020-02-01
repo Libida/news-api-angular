@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 col-lg-4">
+      <img class="news-article-img" [src]="article.urlToImage" [alt]="article.title">
+    </div>
+    <div class="col-12 col-lg-4">
+      <h3 class="news-article-title">{{article.title}}</h3>
+      <p class="news-article-location">{{article.content}} <a [href]="article.url" target="_blank">Read more...</a></p>
+      <p class="news-article-location"><strong>Author: </strong>{{article.author}}</p>
+      <p class="news-article-location"><strong>Date: </strong>{{article.publishedAt | date: 'medium'}}</p>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="btn-admin-controls">
+        <button class="btn btn-secondary btn-admin">Edit</button>
+        <button class="btn btn-danger btn-admin">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,3 @@
-@import "../../../style";
-
 .news-article {
   position: relative;
 }
@@ -11,16 +9,21 @@
 }
 
 .news-article-additional-content {
+  background-color: whitesmoke;
+
   @include media-breakpoint-up(lg) {
     width: 50%;
+    max-width: 300px;
   }
-  max-width: 300px;
-  background-color: whitesmoke;
 }
 
 .news-article-main-content {
   flex: 1;
   max-width: 600px;
+}
+
+.card-body {
+  max-width: 100%;
 }
 
 .news-article-img {
@@ -32,5 +35,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+.btn-admin-controls {
+  margin-top: $grid-gutter-width;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 0;
+  }
+}
+
+.btn-admin {
+  width: 100%;
+
+  & + & {
+    margin-top: $grid-gutter-width/2;
   }
 }

@@ -12,3 +12,10 @@ body {
   box-shadow: $box-shadow-sm;
   background-color: $white;
 }
+
+%section-extended {
+  @extend %section;
+  border-bottom: $border-1;
+  padding-top: $grid-gutter-width;
+  padding-bottom: $grid-gutter-width;
+}

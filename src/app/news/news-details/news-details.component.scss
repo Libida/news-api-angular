@@ -1,0 +1,14 @@
+@import "../../../style";
+
+.news-article-title {
+  margin-top: $grid-gutter-width;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 0;
+  }
+}
+
+.btn-admin-controls {
+  margin-bottom: $grid-gutter-width;
+  margin-top: 0;
+}

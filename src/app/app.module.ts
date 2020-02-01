@@ -1,24 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { InputComponent } from './input/input.component';
-import { FooterComponent } from './footer/footer.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { NewsListComponent } from './news/news-list/news-list.component';
-import { ContactComponent } from './contact/contact.component';
+import {BrowserModule, Title} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {filter, map} from 'rxjs/operators';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {DropdownComponent} from './dropdown/dropdown.component';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ActivatedRoute, RouterModule, Routes, NavigationEnd, Router} from '@angular/router';
+import {SidebarComponent} from './sidebar/sidebar.component';
+import {InputComponent} from './input/input.component';
+import {FooterComponent} from './footer/footer.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {NewsListComponent} from './news/news-list/news-list.component';
+import {ContactComponent} from './contact/contact.component';
+import {NewsDetailsComponent} from './news/news-details/news-details.component';
 
 const appRoutes: Routes = [
-  {path: 'news', component: NewsListComponent, pathMatch: 'full'},
-  {path: 'contact', component: ContactComponent, pathMatch: 'full'},
+  {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
+  {path: 'article/:id', component: NewsDetailsComponent, data: {title: 'News Details'}},
+  {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact'}},
   {path: '', redirectTo: 'news', pathMatch: 'full'},
-  {path: '404', component: NotFoundComponent, pathMatch: 'full'},
+  {path: '404', component: NotFoundComponent, pathMatch: 'full', data: {title: '404'}},
   {path: '**', redirectTo: '/404'},
 ];
 
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     NotFoundComponent,
     NewsListComponent,
     ContactComponent,
+    NewsDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,4 +49,27 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 
-export class AppModule {}
+export class AppModule {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(() => {
+        let child = this.activatedRoute.firstChild;
+        while (child) {
+          if (child.firstChild) {
+            child = child.firstChild;
+          } else if (child.snapshot.data && child.snapshot.data.title) {
+            return child.snapshot.data.title;
+          } else {
+            return null;
+          }
+        }
+        return null;
+      })
+    ).subscribe((data: any) => {
+      if (data) {
+        this.titleService.setTitle(data);
+      }
+    });
+  }
+}
