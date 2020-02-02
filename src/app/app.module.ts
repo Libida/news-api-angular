@@ -17,12 +17,15 @@ import {NewsDetailsComponent} from './news/news-details/news-details.component';
 import { AddNewsComponent } from './news/add-news/add-news.component';
 import { NewsListingItemComponent } from './news/news-listing-item/news-listing-item.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
+import { NewsFormComponent } from './news/news-form/news-form.component';
+import { EditNewsComponent } from './news/edit-news/edit-news.component';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
   {path: 'article/:id', component: NewsDetailsComponent, data: {title: 'News Details'}},
   {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact'}},
   {path: 'add-news', component: AddNewsComponent, pathMatch: 'full', data: {title: 'Add news'}},
+  {path: 'edit-news/:id', component: EditNewsComponent, pathMatch: 'full', data: {title: 'Edit news'}},
   {path: '', redirectTo: 'news', pathMatch: 'full'},
   {path: '404', component: NotFoundComponent, pathMatch: 'full', data: {title: '404'}},
   {path: '**', redirectTo: '/404'},
@@ -43,6 +46,8 @@ const appRoutes: Routes = [
     AddNewsComponent,
     NewsListingItemComponent,
     LoadMoreComponent,
+    NewsFormComponent,
+    EditNewsComponent,
   ],
   imports: [
     BrowserModule,

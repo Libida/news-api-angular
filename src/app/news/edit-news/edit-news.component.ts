@@ -1,21 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app.service';
 import {Article} from '../article';
 
 @Component({
-  selector: 'app-news-details',
-  templateUrl: './news-details.component.html',
-  styleUrls: ['./news-details.component.scss']
+  selector: 'app-edit-news',
+  templateUrl: './edit-news.component.html',
+  styleUrls: ['./edit-news.component.scss']
 })
-export class NewsDetailsComponent implements OnInit {
+export class EditNewsComponent implements OnInit {
   id;
   article: Article;
 
   constructor(
     private root: ActivatedRoute,
-    private appService: AppService
-  ) { }
+    private appService: AppService) { }
 
   ngOnInit() {
     this.root.paramMap.subscribe(params => {
@@ -23,4 +22,5 @@ export class NewsDetailsComponent implements OnInit {
       this.article = this.appService.getArticleById(this.id);
     });
   }
+
 }

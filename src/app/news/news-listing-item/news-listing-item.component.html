@@ -12,7 +12,7 @@
       </div>
       <div class="col-12 col-lg-3">
         <div class="btn-admin-controls">
-          <a href="edit-news" role="button" class="btn btn-secondary btn-admin">Edit</a>
+          <a [routerLink]="['/edit-news', article.title]" role="button" class="btn btn-secondary btn-admin">Edit</a>
           <button class="btn btn-danger btn-admin">Delete</button>
         </div>
       </div>

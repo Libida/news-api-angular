@@ -30,6 +30,16 @@ export class AppService {
     });
   }
 
+  getArticleById(id): Article {
+    for (const articleItem of ARTICLES) {
+      if (articleItem.title === id) {
+        this.article = articleItem;
+      }
+    }
+
+    return this.article;
+  }
+
   getArticles(): Observable<Article[]> {
     this.articles = ARTICLES;
     return of(this.articles);
