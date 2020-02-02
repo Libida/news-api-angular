@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-news-form',
@@ -14,13 +15,13 @@ export class NewsFormComponent implements OnInit {
   @Input() urlToImageValue = '';
   dateValue = new Date();
 
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
   }
 
   onCancel() {
-    window.history.back();
+    this.location.back();
   }
 
 }

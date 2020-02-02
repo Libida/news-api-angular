@@ -10,15 +10,25 @@ import {Source} from './news/source';
 })
 
 export class AppService {
-  pageTitle = '';
+  routerPageTitle: object;
   article;
   sourceDefaultValue = {name: 'All sources'};
+  localSource: Source = {
+    id: 'local',
+    name: 'Local',
+    description: 'Local source created by me',
+    url: 'http://localhost:4200',
+    category: 'general',
+    language: 'ru',
+    country: 'by'
+  };
   source = this.sourceDefaultValue;
   sources;
   articles;
   createdByMe = false;
   sourceChange: Subject<Source> = new Subject<Source>();
   createdByMeChange: Subject<boolean> = new Subject<boolean>();
+  routerPageTitleChange: Subject<object> = new Subject<object>();
 
   constructor() {
     this.sourceChange.subscribe((value) => {
@@ -27,6 +37,10 @@ export class AppService {
 
     this.createdByMeChange.subscribe((value) => {
       this.createdByMe = value;
+    });
+
+    this.routerPageTitleChange.subscribe((value) => {
+      this.routerPageTitle = {name: value};
     });
   }
 
@@ -47,6 +61,9 @@ export class AppService {
 
   getSources(): Observable<Source[]> {
     this.sources = SOURCES;
+    // TODO: add local news only in case of looged in user
+    // TODO: populate name for localSource after login
+    this.sources.push(this.localSource);
     return of(this.sources);
   }
 
@@ -61,17 +78,28 @@ export class AppService {
   setSource(value: string) {
     const sources = this.sources;
     let source = this.sourceDefaultValue;
+
     for (const sourceItem of sources) {
       if (sourceItem.name === value) {
         source = sourceItem;
       }
     }
-    if (source && source.name) {
-      this.sourceChange.next(source);
+
+    if (!source || !source.name) {
+      source = this.sourceDefaultValue;
     }
+
+    this.source = source;
+
+    this.sourceChange.next(this.source);
   }
 
-  setPageTitle(pageTitle: string) {
-    this.pageTitle = pageTitle;
+  setRouterPageTitle(pageTitle: string) {
+    this.routerPageTitle = {name: pageTitle};
+    this.routerPageTitleChange.next(this.routerPageTitle);
+  }
+
+  getRouterPageTitle(): Observable<object> {
+    return of(this.routerPageTitle);
   }
 }

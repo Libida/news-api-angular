@@ -24,11 +24,11 @@ import { TextareaComponent } from './textarea/textarea.component';
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
   {path: 'article/:id', component: NewsDetailsComponent, data: {title: 'News Details'}},
-  {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact'}},
-  {path: 'add-news', component: AddNewsComponent, pathMatch: 'full', data: {title: 'Add news'}},
-  {path: 'edit-news/:id', component: EditNewsComponent, pathMatch: 'full', data: {title: 'Edit news'}},
+  {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact', pageTitle: 'Contact'}},
+  {path: 'add-news', component: AddNewsComponent, pathMatch: 'full', data: {title: 'Add news', pageTitle: 'Add news'}},
+  {path: 'edit-news/:id', component: EditNewsComponent, pathMatch: 'full', data: {title: 'Edit news', pageTitle: 'Edit news'}},
   {path: '', redirectTo: 'news', pathMatch: 'full'},
-  {path: '404', component: NotFoundComponent, pathMatch: 'full', data: {title: '404'}},
+  {path: '404', component: NotFoundComponent, pathMatch: 'full', data: {title: '404', pageTitle: 'Oops'}},
   {path: '**', redirectTo: '/404'},
 ];
 
@@ -63,27 +63,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 
-export class AppModule {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(() => {
-        let child = this.activatedRoute.firstChild;
-        while (child) {
-          if (child.firstChild) {
-            child = child.firstChild;
-          } else if (child.snapshot.data && child.snapshot.data.title) {
-            return child.snapshot.data.title;
-          } else {
-            return null;
-          }
-        }
-        return null;
-      })
-    ).subscribe((data: any) => {
-      if (data) {
-        this.titleService.setTitle(data);
-      }
-    });
-  }
-}
+export class AppModule {}
