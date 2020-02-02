@@ -3,33 +3,9 @@
   <div class="row mb-2">
     <div class="col-12">
       <article *ngFor="let article of articles" class="news-article card mb-4 box-shadow">
-        <div class="news-article-body" >
-          <div class="news-article-additional-content">
-            <img class="news-article-img" [src]="article.urlToImage" [alt]="article.title">
-          </div>
-          <div class="news-article-main-content card-body">
-            <div class="row">
-              <div class="col-12 col-lg-9">
-                <h3 class="news-article-title">{{article.title}}</h3>
-                <div class="mb-1 text-muted">{{article.publishedAt | date: 'medium'}}</div>
-                <p class="news-article-location">{{article.description}}</p>
-                <a [routerLink]="['/article', article.title]">Read more...</a>
-              </div>
-              <div class="col-12 col-lg-3">
-                <div class="btn-admin-controls">
-                  <button class="btn btn-secondary btn-admin">Edit</button>
-                  <button class="btn btn-danger btn-admin">Delete</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-news-listing-item [article]="article"></app-news-listing-item>
       </article>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <button type="button" class="btn btn-primary btn-lg btn-block mb-4">Load more</button>
-    </div>
-  </div>
+  <app-load-more (clicked)="onLoadMoreClick()"></app-load-more>
 </div>

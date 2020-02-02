@@ -20,4 +20,7 @@ export class NewsListComponent implements OnInit {
     this.appService.getArticles().subscribe(articles => this.articles = articles);
   }
 
+  onLoadMoreClick() {
+    alert('onLoadMoreClick with @Output');
+  }
 }

@@ -1,0 +1,21 @@
+<div class="news-article-body" >
+  <div class="news-article-additional-content">
+    <img class="news-article-img" [src]="article.urlToImage" [alt]="article.title">
+  </div>
+  <div class="news-article-main-content card-body">
+    <div class="row">
+      <div class="col-12 col-lg-9">
+        <h3 class="news-article-title">{{article.title}}</h3>
+        <div class="mb-1 text-muted">{{article.publishedAt | date: 'medium'}}</div>
+        <p class="news-article-location">{{article.description}}</p>
+        <a [routerLink]="['/article', article.title]">Read more...</a>
+      </div>
+      <div class="col-12 col-lg-3">
+        <div class="btn-admin-controls">
+          <a href="edit-news" role="button" class="btn btn-secondary btn-admin">Edit</a>
+          <button class="btn btn-danger btn-admin">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

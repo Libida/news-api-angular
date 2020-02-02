@@ -14,11 +14,15 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {NewsListComponent} from './news/news-list/news-list.component';
 import {ContactComponent} from './contact/contact.component';
 import {NewsDetailsComponent} from './news/news-details/news-details.component';
+import { AddNewsComponent } from './news/add-news/add-news.component';
+import { NewsListingItemComponent } from './news/news-listing-item/news-listing-item.component';
+import { LoadMoreComponent } from './load-more/load-more.component';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
   {path: 'article/:id', component: NewsDetailsComponent, data: {title: 'News Details'}},
   {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact'}},
+  {path: 'add-news', component: AddNewsComponent, pathMatch: 'full', data: {title: 'Add news'}},
   {path: '', redirectTo: 'news', pathMatch: 'full'},
   {path: '404', component: NotFoundComponent, pathMatch: 'full', data: {title: '404'}},
   {path: '**', redirectTo: '/404'},
@@ -36,6 +40,9 @@ const appRoutes: Routes = [
     NewsListComponent,
     ContactComponent,
     NewsDetailsComponent,
+    AddNewsComponent,
+    NewsListingItemComponent,
+    LoadMoreComponent,
   ],
   imports: [
     BrowserModule,
