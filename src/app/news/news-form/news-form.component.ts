@@ -9,12 +9,18 @@ export class NewsFormComponent implements OnInit {
   @Input() authorValue = '';
   @Input() titleValue = '';
   @Input() descriptionValue = '';
+  @Input() contentValue = '';
   @Input() urlValue = '';
   @Input() urlToImageValue = '';
+  dateValue = new Date();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onCancel() {
+    window.history.back();
   }
 
 }

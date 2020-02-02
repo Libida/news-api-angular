@@ -2,13 +2,42 @@
   <div class="row">
     <div class="col-12">
       <form class="form">
-        <app-input label="Author" id="news-author" name="author" [value]="authorValue"></app-input>
-        <app-input label="Title" id="news-title" name="title" [value]="titleValue"></app-input>
-        <app-input label="Description" id="news-description" name="description" [value]="descriptionValue"></app-input>
-        <app-input label="News URL" id="news-url" name="url" [value]="urlValue"></app-input>
-        <app-input label="News image URL" id="news-url-img" name="urlToImage" [value]="urlToImageValue"></app-input>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+
+            <app-input label="Heading" id="news-title" name="title" [value]="titleValue"></app-input>
+            <app-input label="Short description" id="news-description" name="description"
+                       [value]="descriptionValue"></app-input>
+            <app-textarea label="Content" id="news-content" name="content" [value]="contentValue"></app-textarea>
+          </div>
+
+          <div class="col-12 col-lg-6">
+
+            <div class="attach-image">
+              <div class="image-radios">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                         value="option1">
+                  <label class="form-check-label" for="inlineRadio1">URL</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                         value="option2">
+                  <label class="form-check-label" for="inlineRadio2">File</label>
+                </div>
+              </div>
+              <app-input label="Image" id="news-url-img" name="urlToImage" [value]="urlToImageValue"></app-input>
+            </div>
+
+            <app-input label="Date" id="news-date" name="date" [value]="dateValue| date: 'medium'"></app-input>
+            <app-input label="Author" id="news-author" name="author" [value]="authorValue"></app-input>
+            <app-input label="News URL" id="news-url" name="url" [value]="urlValue"></app-input>
+            <div class="form-group form-cta">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            </div>
+
+          </div>
         </div>
       </form>
     </div>

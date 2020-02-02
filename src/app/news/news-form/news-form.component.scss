@@ -1,0 +1,23 @@
+.attach-image {
+  position: relative;
+}
+
+.image-radios {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.form-cta {
+  .btn {
+    width: calc(50% - 10px);
+
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+}
