@@ -1,12 +1,11 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {filter, map} from 'rxjs/operators';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {DropdownComponent} from './dropdown/dropdown.component';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ActivatedRoute, RouterModule, Routes, NavigationEnd, Router} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {InputComponent} from './input/input.component';
 import {FooterComponent} from './footer/footer.component';
@@ -20,6 +19,7 @@ import { LoadMoreComponent } from './load-more/load-more.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
@@ -50,6 +50,7 @@ const appRoutes: Routes = [
     NewsFormComponent,
     EditNewsComponent,
     TextareaComponent,
+    FileSelectDirective,
   ],
   imports: [
     BrowserModule,

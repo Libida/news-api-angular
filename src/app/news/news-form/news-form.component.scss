@@ -21,3 +21,18 @@
     }
   }
 }
+
+.attach-image-data-url,
+.attach-image-data-upload {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.form-control-upload {
+  background: transparent;
+  border: transparent;
+  padding-left: 0;
+}

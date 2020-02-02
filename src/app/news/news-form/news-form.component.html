@@ -12,23 +12,36 @@
           </div>
 
           <div class="col-12 col-lg-6">
-
             <div class="attach-image">
               <div class="image-radios">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                         value="option1">
+                         value="option1" [checked]="isImageURL" (click)="switchToImageURL()">
                   <label class="form-check-label" for="inlineRadio1">URL</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                         value="option2">
+                         value="option2" [checked]="isImageFile" (click)="switchToImageFile()">
                   <label class="form-check-label" for="inlineRadio2">File</label>
                 </div>
               </div>
-              <app-input label="Image" id="news-url-img" name="urlToImage" [value]="urlToImageValue"></app-input>
+              <div class="attach-image-data">
+                <div class="attach-image-data-url" [class.active]="isImageURL">
+                  <app-input label="Image" id="news-url-img" name="urlToImage" [value]="urlToImageValue"></app-input>
+                </div>
+                <div class="attach-image-data-upload" [class.active]="isImageFile">
+                  <div class="form-group">
+                    <label for="image-upload">Image</label>
+                    <input type="file" name="image" id="image-upload"ng2FileSelect [uploader]="uploader"
+                           accept="image/x-png,image/gif,image/jpeg" class="form-control form-control-upload"/>
+                    <!--                  <button type="button" (click)="uploader.uploadAll()"-->
+                    <!--                          [disabled]="!uploader.getNotUploadedItems().length">-->
+                    <!--                    Upload-->
+                    <!--                  </button>-->
+                  </div>
+                </div>
+              </div>
             </div>
-
             <app-input label="Date" id="news-date" name="date" [value]="dateValue| date: 'medium'"></app-input>
             <app-input label="Author" id="news-author" name="author" [value]="authorValue"></app-input>
             <app-input label="News URL" id="news-url" name="url" [value]="urlValue"></app-input>
