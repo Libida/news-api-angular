@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ElementRef} from '@angular/core';
 import {AppService} from '../app.service';
 
 @Component({
@@ -9,6 +9,7 @@ import {AppService} from '../app.service';
 export class DropdownComponent implements OnInit {
   selectedText = 'Select Source';
   @Input() dropdownItems;
+  @Input() isDisabled;
 
   constructor(private appService: AppService) { }
 

@@ -9,6 +9,7 @@ import {AppService} from '../app.service';
 export class SidebarComponent implements OnInit {
   dropdownItems;
   createdByMeIsChecked;
+  isDropdownDisabled = false;
 
   constructor(private appService: AppService) { }
 
@@ -17,6 +18,10 @@ export class SidebarComponent implements OnInit {
 
     this.appService.createdByMeChange.subscribe(value => {
       this.createdByMeIsChecked = value;
+      this.isDropdownDisabled = value;
+      // can't make quickly via setSource as dropdown items are not in the DOM
+      const valueForService = value ? 'Local' : undefined;
+      this.appService.setSource(valueForService);
     });
   }
 

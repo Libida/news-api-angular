@@ -12,7 +12,8 @@ import {Source} from './news/source';
 export class AppService {
   routerPageTitle: object;
   article;
-  sourceDefaultValue = {name: 'All sources'};
+  sourceDefaultName = 'All sources';
+  sourceDefaultValue = {name: this.sourceDefaultName};
   localSource: Source = {
     id: 'local',
     name: 'Local',
@@ -75,7 +76,7 @@ export class AppService {
     this.createdByMeChange.next(!this.createdByMe);
   }
 
-  setSource(value: string) {
+  setSource(value: string = this.sourceDefaultName) {
     const sources = this.sources;
     let source = this.sourceDefaultValue;
 
