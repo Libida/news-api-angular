@@ -14,7 +14,11 @@ export class SidebarComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.appService.getSources().subscribe(sources => this.dropdownItems = sources);
+    // this.appService.getSources().subscribe(sources => this.dropdownItems = sources);
+    this.appService.getSources()
+      .subscribe((data) => {
+        this.dropdownItems = data.sources;
+      });
 
     this.appService.createdByMeChange.subscribe(value => {
       this.createdByMeIsChecked = value;

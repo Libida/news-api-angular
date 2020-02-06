@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
-import {SOURCES} from './news/sources-mock';
+import {map} from 'rxjs/operators';
 import {ARTICLES} from './news/news-mock';
 import {Article} from './news/article';
 import {Source} from './news/source';
+import {Sources} from './news/sources';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AppService {
-  routerPageTitle: object;
-  article;
-  sourceDefaultName = 'All sources';
-  sourceDefaultValue = {name: this.sourceDefaultName};
-  localSource: Source = {
+  private routerPageTitle: object;
+  private article;
+  private sourceDefaultName = 'All sources';
+  private sourceDefaultValue = {name: this.sourceDefaultName};
+  private localSource: Source = {
     id: 'local',
     name: 'Local',
     description: 'Local source created by me',
@@ -23,15 +25,19 @@ export class AppService {
     language: 'ru',
     country: 'by'
   };
-  source = this.sourceDefaultValue;
-  sources;
-  articles;
-  createdByMe = false;
+  private source = this.sourceDefaultValue;
+  private sources: Source[];
+  private articles;
+  private createdByMe = false;
   sourceChange: Subject<Source> = new Subject<Source>();
+  sourcesChange: Subject<object> = new Subject<object>();
   createdByMeChange: Subject<boolean> = new Subject<boolean>();
   routerPageTitleChange: Subject<object> = new Subject<object>();
+  private newsApiKey = 'a1e2ae38e5ff42f1aa3175998837d6ca';
+  private sourcesUrl = `https://newsapi.org/v2/sources?apiKey=${this.newsApiKey}&limit=5`;
+  private newsUrl = `https://newsapi.org/v2/sources?apiKey=${this.newsApiKey}`;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.sourceChange.subscribe((value) => {
       this.source = value;
     });
@@ -60,12 +66,19 @@ export class AppService {
     return of(this.articles);
   }
 
-  getSources(): Observable<Source[]> {
-    this.sources = SOURCES;
-    // TODO: add local news only in case of looged in user
-    // TODO: populate name for localSource after login
-    this.sources.push(this.localSource);
-    return of(this.sources);
+  getSources(): Observable<Sources> {
+    return this.http.get<Sources>(this.sourcesUrl).pipe(
+      map((data) => {
+        const incomeSources = data.sources || [];
+        const outcomeSources = incomeSources.slice(0, 9);
+        // TODO: add local news only in case of logged in user
+        // TODO: populate name for localSource after login
+        outcomeSources.push(this.localSource);
+        data.sources = outcomeSources;
+        this.sources = outcomeSources;
+        return data;
+      })
+    );
   }
 
   getSource(): Observable<Source> {

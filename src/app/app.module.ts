@@ -1,5 +1,6 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {DropdownComponent} from './dropdown/dropdown.component';
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
