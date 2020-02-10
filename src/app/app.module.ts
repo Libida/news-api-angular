@@ -21,6 +21,8 @@ import { NewsFormComponent } from './news/news-form/news-form.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { FileSelectDirective } from 'ng2-file-upload';
+import { NewsListEmptyComponent } from './news/news-list-empty/news-list-empty.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
@@ -52,6 +54,8 @@ const appRoutes: Routes = [
     EditNewsComponent,
     TextareaComponent,
     FileSelectDirective,
+    NewsListEmptyComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

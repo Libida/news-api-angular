@@ -9,7 +9,8 @@ import {AppService} from '../app.service';
 
 export class HeaderComponent implements OnInit {
   routerPageTitle;
-  pageTitle = {name: ''};
+  pageTitleDefault = { name: '' };
+  pageTitle = this.pageTitleDefault;
   source;
 
   headerItemsUnauthorised = [{href: "login", text: "Login"}, {href: "signup", text: "Sign up"}];
@@ -20,10 +21,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.appService.routerPageTitleChange.subscribe(value => {
-      this.useRouterTitleAsPageTitle(value);
-    });
-
-    this.appService.getRouterPageTitle().subscribe(value => {
       this.useRouterTitleAsPageTitle(value);
     });
 
@@ -42,8 +39,10 @@ export class HeaderComponent implements OnInit {
     // Use as a page title only when there is a value
     if (this.routerPageTitle && this.routerPageTitle.name) {
       this.pageTitle = this.routerPageTitle;
-    } else {
+    } else if (this.source && this.source.name) {
       this.pageTitle = this.source;
+    } else {
+      this.pageTitle = this.pageTitleDefault;
     }
   }
 

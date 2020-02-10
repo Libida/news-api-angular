@@ -8,25 +8,34 @@ import {AppService} from '../app.service';
 })
 export class SidebarComponent implements OnInit {
   dropdownItems;
+  selectedDropdownItem;
   createdByMeIsChecked;
   isDropdownDisabled = false;
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    // this.appService.getSources().subscribe(sources => this.dropdownItems = sources);
-    this.appService.getSources()
-      .subscribe((data) => {
-        this.dropdownItems = data.sources;
+    this.appService.getSources().subscribe((data) => {
+        this.dropdownItems = data;
       });
+
+    this.appService.sourceChange.subscribe((data) => {
+      this.selectedDropdownItem = data.name;
+    });
 
     this.appService.createdByMeChange.subscribe(value => {
       this.createdByMeIsChecked = value;
       this.isDropdownDisabled = value;
-      // can't make quickly via setSource as dropdown items are not in the DOM
-      const valueForService = value ? 'Local' : undefined;
-      this.appService.setSource(valueForService);
+      if (value) {
+        this.appService.setSourceToLocal();
+      } else {
+        alert('TODO');
+      }
     });
+  }
+
+  changeSourceValue(value: string): void {
+    this.appService.setSource(value);
   }
 
   onCheckboxChange() {

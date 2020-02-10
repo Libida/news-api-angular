@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ElementRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AppService} from '../app.service';
 
 @Component({
@@ -7,19 +7,17 @@ import {AppService} from '../app.service';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
-  selectedText = 'Select Source';
   @Input() dropdownItems;
+  @Input() selectedDropdownItem;
   @Input() isDisabled;
+  @Output() dropdownClick = new EventEmitter<string>();
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
   }
 
-  // TODO: dropdown should now nothing about source, should be on one level higher
   onClick(value: string): void {
-    this.selectedText = value;
-    this.appService.setSource(value);
+    this.dropdownClick.emit(value);
   }
-
 }

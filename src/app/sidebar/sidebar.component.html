@@ -4,7 +4,9 @@
 
       <div class="row row_sidebar">
         <div class="col-12 col-lg-3">
-          <app-dropdown [dropdownItems]="dropdownItems" [isDisabled]="isDropdownDisabled"></app-dropdown>
+          <app-dropdown [dropdownItems]="dropdownItems" [isDisabled]="isDropdownDisabled"
+                        [selectedDropdownItem]="selectedDropdownItem"
+                        (dropdownClick)="changeSourceValue($event)"></app-dropdown>
         </div>
 
         <div class="col-12 col-lg-3 col_source">

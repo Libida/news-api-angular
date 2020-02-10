@@ -1,11 +1,14 @@
 <app-sidebar></app-sidebar>
-<div class="container mt-4">
+<div *ngIf="articles" class="container mt-4">
   <div class="row mb-2">
     <div class="col-12">
       <article *ngFor="let article of articles" class="news-article card mb-4 box-shadow">
         <app-news-listing-item [article]="article"></app-news-listing-item>
       </article>
+      <app-news-list-empty *ngIf="articles && !articles.length"></app-news-list-empty>
     </div>
   </div>
-  <app-load-more (clicked)="onLoadMoreClick()"></app-load-more>
+  <app-load-more *ngIf="articles.length" (clicked)="onLoadMoreClick()"></app-load-more>
 </div>
+<app-spinner *ngIf="!articles"></app-spinner>
+

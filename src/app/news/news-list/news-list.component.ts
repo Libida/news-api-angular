@@ -13,11 +13,9 @@ export class NewsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getArticles();
-  }
-
-  getArticles(): void {
-    this.appService.getArticles().subscribe(articles => this.articles = articles);
+    this.appService.articlesChange.subscribe(data => {
+      this.articles = data;
+    });
   }
 
   onLoadMoreClick() {
