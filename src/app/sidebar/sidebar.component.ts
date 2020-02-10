@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 import {AppService} from '../app.service';
 
 @Component({
@@ -11,8 +12,15 @@ export class SidebarComponent implements OnInit {
   selectedDropdownItem;
   createdByMeIsChecked;
   isDropdownDisabled = false;
+  filterForm;
 
-  constructor(private appService: AppService) { }
+  constructor(
+    private appService: AppService,
+    private formBuilder: FormBuilder) {
+    this.filterForm = this.formBuilder.group({
+      query: ''
+    });
+  }
 
   ngOnInit() {
     this.appService.getSources().subscribe((data) => {
@@ -42,4 +50,7 @@ export class SidebarComponent implements OnInit {
     this.appService.toggleCreatedByMe();
   }
 
+  onFilter(data) {
+    this.appService.setFilterQuery(data.query);
+  }
 }

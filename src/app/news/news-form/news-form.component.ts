@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Location} from '@angular/common';
 import {FileUploader} from 'ng2-file-upload';
+import {FormBuilder} from '@angular/forms';
 
 const uploadURL = 'http://localhost:8080/api/upload';
 
@@ -19,13 +20,18 @@ export class NewsFormComponent implements OnInit {
   dateValue = new Date();
   isImageURL = true;
   isImageFile = false;
+  newsForm;
 
   public uploader: FileUploader = new FileUploader({
     url: uploadURL,
     itemAlias: 'image'
   });
 
-  constructor(private location: Location) { }
+  constructor(
+    private location: Location,
+    private formBuilder: FormBuilder) {
+    this.newsForm = this.formBuilder.group({});
+  }
 
   ngOnInit() {
   }

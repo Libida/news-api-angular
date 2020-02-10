@@ -23,6 +23,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { NewsListEmptyComponent } from './news/news-list-empty/news-list-empty.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
       appRoutes
     ),
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,12 +10,14 @@
         </div>
 
         <div class="col-12 col-lg-3 col_source">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type your text" aria-label="Type your text" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Filter</button>
+          <form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">
+            <div class="input-group">
+              <input type="text" formControlName="query" class="form-control" placeholder="Type your text" aria-label="Type your text" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Filter</button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
 
         <div class="col-12 col-lg-3 col_filter">

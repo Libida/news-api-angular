@@ -42,6 +42,7 @@ export class AppService {
   private articles;
   private articlesPage = 1;
   private createdByMe = false;
+  private filterQuery = '';
   articlesChange: Subject<Article[]> = new Subject<Article[]>();
   sourceChange: Subject<Source> = new Subject<Source>();
   createdByMeChange: Subject<boolean> = new Subject<boolean>();
@@ -94,7 +95,7 @@ export class AppService {
 
   getArticles() {
     const sourcesList = this.getSourcesListString();
-    const articlesUrl = `${this.articlesUrl}&sources=${sourcesList}&page=${this.articlesPage}`;
+    const articlesUrl = `${this.articlesUrl}&sources=${sourcesList}&page=${this.articlesPage}&q=${this.filterQuery}`;
 
     this.http.get<Articles>(articlesUrl).pipe(
       map((data) => {
@@ -166,6 +167,11 @@ export class AppService {
   setRouterPageTitle(pageTitle: string) {
     this.routerPageTitle = {name: pageTitle};
     this.routerPageTitleChange.next(this.routerPageTitle);
+  }
+
+  setFilterQuery(query) {
+    this.filterQuery = query;
+    this.getArticles();
   }
 
   getRouterPageTitle(): Observable<object> {
