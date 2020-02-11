@@ -41,12 +41,17 @@ export class AppService {
   private sourcesLimitAmount = 9;
   private articles;
   private articlesPage = 1;
+  private articlesPerPage = 10;
+  private visibleArticles = 0;
+  private totalArticles;
   private createdByMe = false;
+  private loadLoadMoreArticles = false;
   private filterQuery = '';
   articlesChange: Subject<Article[]> = new Subject<Article[]>();
   sourceChange: Subject<Source> = new Subject<Source>();
   createdByMeChange: Subject<boolean> = new Subject<boolean>();
   routerPageTitleChange: Subject<object> = new Subject<object>();
+  loadMoreArticlesChange: Subject<boolean> = new Subject<boolean>();
   private newsApiKey = 'a1e2ae38e5ff42f1aa3175998837d6ca';
   private newsApi = 'https://newsapi.org/v2';
   private sourcesUrl = `${this.newsApi}/sources?apiKey=${this.newsApiKey}&limit=5`;
@@ -71,6 +76,12 @@ export class AppService {
 
     this.articlesChange.subscribe((value) => {
       this.articles = value;
+      this.visibleArticles = this.articles.length;
+      this.loadMoreArticlesChange.next((this.totalArticles > this.visibleArticles));
+    });
+
+    this.loadMoreArticlesChange.subscribe((value) => {
+      this.loadLoadMoreArticles = value;
     });
 
     this.createdByMeChange.subscribe((value) => {
@@ -93,15 +104,27 @@ export class AppService {
     return this.article;
   }
 
-  getArticles() {
-    const sourcesList = this.getSourcesListString();
-    const articlesUrl = `${this.articlesUrl}&sources=${sourcesList}&page=${this.articlesPage}&q=${this.filterQuery}`;
+  getArticles(isLoadMore = false) {
+    this.articlesPage = isLoadMore ? (this.articlesPage + 1) : this.articlesPage;
+    const articlesUrl = this.getArticlesUrl();
 
     this.http.get<Articles>(articlesUrl).pipe(
       map((data) => {
         const incomeArticles = data.articles || [];
-        this.articlesChange.next(incomeArticles);
-        return incomeArticles;
+        let outcomeArticles = [];
+        this.totalArticles = data.totalResults;
+
+        if (isLoadMore) {
+          outcomeArticles = this.articles;
+
+          incomeArticles.forEach((article, i) => {
+            outcomeArticles.push(article);
+          });
+
+        } else {
+          outcomeArticles = incomeArticles;
+        }
+        return outcomeArticles;
       })
     ).subscribe(
       (data) => {
@@ -110,6 +133,11 @@ export class AppService {
       (error) => {
         this.articlesChange.next([]);
       });
+  }
+
+  getArticlesUrl() {
+    const sourcesList = this.getSourcesListString();
+    return `${this.articlesUrl}&sources=${sourcesList}&page=${this.articlesPage}&q=${this.filterQuery}&pageSize=${this.articlesPerPage}`;
   }
 
   getSources(): Observable<Source[]> {

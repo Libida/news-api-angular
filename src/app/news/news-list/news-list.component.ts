@@ -19,6 +19,6 @@ export class NewsListComponent implements OnInit {
   }
 
   onLoadMoreClick() {
-    alert('onLoadMoreClick with @Output');
+    this.appService.getArticles(true);
   }
 }

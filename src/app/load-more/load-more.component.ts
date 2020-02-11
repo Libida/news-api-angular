@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AppService} from '../app.service';
 
 @Component({
   selector: 'app-load-more',
@@ -7,10 +8,14 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class LoadMoreComponent implements OnInit {
   @Output() clicked = new EventEmitter<boolean>();
+  isLoadMoreVisible = false;
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.appService.loadMoreArticlesChange.subscribe((value) => {
+      this.isLoadMoreVisible = value;
+    });
   }
 
   loadMoreClick() {
