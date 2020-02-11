@@ -12,11 +12,7 @@ export class LoadMoreComponent implements OnInit {
 
   constructor(private appService: AppService) { }
 
-  ngOnInit() {
-    this.appService.loadMoreArticlesChange.subscribe((value) => {
-      this.isLoadMoreVisible = value;
-    });
-  }
+  ngOnInit() {}
 
   loadMoreClick() {
     this.clicked.emit(true);

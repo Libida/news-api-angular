@@ -8,7 +8,7 @@
       <app-news-list-empty *ngIf="articles && !articles.length"></app-news-list-empty>
     </div>
   </div>
-  <app-load-more *ngIf="articles.length" (clicked)="onLoadMoreClick()"></app-load-more>
+  <app-load-more *ngIf="toShowLoadMore" (clicked)="onLoadMoreClick()"></app-load-more>
 </div>
 <app-spinner *ngIf="!articles"></app-spinner>
 

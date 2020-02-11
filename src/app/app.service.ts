@@ -45,7 +45,7 @@ export class AppService {
   private visibleArticles = 0;
   private totalArticles;
   private createdByMe = false;
-  private loadLoadMoreArticles = false;
+  private toLoadMoreArticles = false;
   private filterQuery = '';
   articlesChange: Subject<Article[]> = new Subject<Article[]>();
   sourceChange: Subject<Source> = new Subject<Source>();
@@ -81,7 +81,7 @@ export class AppService {
     });
 
     this.loadMoreArticlesChange.subscribe((value) => {
-      this.loadLoadMoreArticles = value;
+      this.toLoadMoreArticles = value;
     });
 
     this.createdByMeChange.subscribe((value) => {

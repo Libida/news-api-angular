@@ -7,6 +7,7 @@ import {AppService} from '../../app.service';
 })
 export class NewsListComponent implements OnInit {
   articles;
+  toShowLoadMore;
 
   constructor(private appService: AppService) {
 
@@ -15,6 +16,10 @@ export class NewsListComponent implements OnInit {
   ngOnInit() {
     this.appService.articlesChange.subscribe(data => {
       this.articles = data;
+    });
+
+    this.appService.loadMoreArticlesChange.subscribe((value) => {
+      this.toShowLoadMore = value;
     });
   }
 
