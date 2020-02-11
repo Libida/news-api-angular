@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ARTICLES} from './news/news-mock';
 import {Article} from './news/article';
 import {Articles} from './news/articles';
 import {Source} from './news/source';
@@ -14,7 +13,6 @@ import {Sources} from './news/sources';
 
 export class AppService {
   private routerPageTitle: object;
-  private article;
   allSourceValue = 'All sources';
   localSourceValue = 'Local';
   private localSource: Source = {
@@ -39,15 +37,17 @@ export class AppService {
   private source;
   private sources = [];
   private sourcesLimitAmount = 9;
+  private article;
   private articles;
   private articlesPage = 1;
-  private articlesPerPage = 10;
+  private articlesPerPage = 5;
   private visibleArticles = 0;
   private totalArticles;
   private createdByMe = false;
   private toLoadMoreArticles = false;
   private filterQuery = '';
   articlesChange: Subject<Article[]> = new Subject<Article[]>();
+  articleChange: Subject<Article> = new Subject<Article>();
   sourceChange: Subject<Source> = new Subject<Source>();
   createdByMeChange: Subject<boolean> = new Subject<boolean>();
   routerPageTitleChange: Subject<object> = new Subject<object>();
@@ -80,6 +80,11 @@ export class AppService {
       this.loadMoreArticlesChange.next((this.totalArticles > this.visibleArticles));
     });
 
+    this.articleChange.subscribe((data) => {
+        this.article = data;
+      }
+    );
+
     this.loadMoreArticlesChange.subscribe((value) => {
       this.toLoadMoreArticles = value;
     });
@@ -94,14 +99,29 @@ export class AppService {
 
   }
 
-  getArticleById(id): Article {
-    for (const articleItem of ARTICLES) {
-      if (articleItem.title === id) {
-        this.article = articleItem;
-      }
-    }
+  getCurrentArticles() {
+    return this.articles;
+  }
 
-    return this.article;
+  getCurrentLoadMore() {
+    return this.toLoadMoreArticles;
+  }
+
+  getArticleById(options) {
+    const articleUrl = this.getArticleUrl(options);
+
+    this.http.get<Articles>(articleUrl).pipe(
+      map((data) => {
+        const incomeArticles = data.articles || [];
+        return incomeArticles && incomeArticles[0];
+      })
+    ).subscribe(
+      (data) => {
+        this.articleChange.next(data);
+      },
+      (error) => {
+        this.articleChange.next(null);
+      });
   }
 
   getArticles(isLoadMore = false) {
@@ -138,6 +158,12 @@ export class AppService {
   getArticlesUrl() {
     const sourcesList = this.getSourcesListString();
     return `${this.articlesUrl}&sources=${sourcesList}&page=${this.articlesPage}&q=${this.filterQuery}&pageSize=${this.articlesPerPage}`;
+  }
+
+  getArticleUrl(options) {
+    const title = options.title;
+    const source = options.source;
+    return `${this.articlesUrl}&sources=${source}&qInTitle="${title}"`;
   }
 
   getSources(): Observable<Source[]> {

@@ -14,6 +14,10 @@ export class NewsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    // For case when first page load starts on different page
+    this.articles = this.appService.getCurrentArticles();
+    this.toShowLoadMore = this.appService.getCurrentLoadMore();
+
     this.appService.articlesChange.subscribe(data => {
       this.articles = data;
     });

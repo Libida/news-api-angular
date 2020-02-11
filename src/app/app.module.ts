@@ -27,7 +27,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
-  {path: 'article/:id', component: NewsDetailsComponent, data: {title: 'News Details'}},
+  {path: 'article/:source/:title', component: NewsDetailsComponent, data: {title: 'News Details'}},
   {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact', pageTitle: 'Contact'}},
   {path: 'add-news', component: AddNewsComponent, pathMatch: 'full', data: {title: 'Add news', pageTitle: 'Add news'}},
   {path: 'edit-news/:id', component: EditNewsComponent, pathMatch: 'full', data: {title: 'Edit news', pageTitle: 'Edit news'}},

@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4" *ngIf="article">
   <div class="row">
     <div class="col-12 col-lg-4">
       <img class="news-article-img" [src]="article.urlToImage" [alt]="article.title">
@@ -17,3 +17,4 @@
     </div>
   </div>
 </div>
+<app-spinner *ngIf="!article"></app-spinner>
