@@ -9,8 +9,6 @@ import {Article} from '../article';
   styleUrls: ['./news-details.component.scss']
 })
 export class NewsDetailsComponent implements OnInit {
-  source;
-  title;
   article: Article;
 
   constructor(
@@ -20,12 +18,7 @@ export class NewsDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.root.paramMap.subscribe(params => {
-      this.source = params.get('source');
-      this.title = params.get('title');
-      this.appService.getArticleById({
-        source: this.source,
-        title: this.title
-      });
+      this.appService.getArticleByParams(params);
     });
 
     this.appService.articleChange.subscribe((data) => {

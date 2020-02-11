@@ -9,7 +9,6 @@ import {Article} from '../article';
   styleUrls: ['./edit-news.component.scss']
 })
 export class EditNewsComponent implements OnInit {
-  id;
   article: Article;
 
   constructor(
@@ -18,8 +17,11 @@ export class EditNewsComponent implements OnInit {
 
   ngOnInit() {
     this.root.paramMap.subscribe(params => {
-      this.id = params.get('id');
-      this.article = this.appService.getArticleById(this.id);
+      this.appService.getArticleByParams(params);
+    });
+
+    this.appService.articleChange.subscribe((data) => {
+      this.article = data;
     });
   }
 

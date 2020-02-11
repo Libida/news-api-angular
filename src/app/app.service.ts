@@ -107,8 +107,8 @@ export class AppService {
     return this.toLoadMoreArticles;
   }
 
-  getArticleById(options) {
-    const articleUrl = this.getArticleUrl(options);
+  getArticleByParams(params) {
+    const articleUrl = this.getArticleUrl(params);
 
     this.http.get<Articles>(articleUrl).pipe(
       map((data) => {
@@ -160,9 +160,9 @@ export class AppService {
     return `${this.articlesUrl}&sources=${sourcesList}&page=${this.articlesPage}&q=${this.filterQuery}&pageSize=${this.articlesPerPage}`;
   }
 
-  getArticleUrl(options) {
-    const title = options.title;
-    const source = options.source;
+  getArticleUrl(params) {
+    const title = params.get('title');
+    const source = params.get('source');
     return `${this.articlesUrl}&sources=${source}&qInTitle="${title}"`;
   }
 
