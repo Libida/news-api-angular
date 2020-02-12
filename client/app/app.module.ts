@@ -24,6 +24,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { NewsListEmptyComponent } from './news/news-list-empty/news-list-empty.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
@@ -31,6 +33,8 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact', pageTitle: 'Contact'}},
   {path: 'add-news', component: AddNewsComponent, pathMatch: 'full', data: {title: 'Add news', pageTitle: 'Add news'}},
   {path: 'edit-news/:source/:title', component: EditNewsComponent, pathMatch: 'full', data: {title: 'Edit news', pageTitle: 'Edit news'}},
+  {path: 'sign-up', component: RegisterComponent, pathMatch: 'full', data: {title: 'Sign up', pageTitle: 'Sign up'}},
+  {path: 'login', component: LoginComponent, pathMatch: 'full', data: {title: 'Login', pageTitle: 'Login'}},
   {path: '', redirectTo: 'news', pathMatch: 'full'},
   {path: '404', component: NotFoundComponent, pathMatch: 'full', data: {title: '404', pageTitle: 'Oops'}},
   {path: '**', redirectTo: '/404'},
@@ -57,6 +61,8 @@ const appRoutes: Routes = [
     FileSelectDirective,
     NewsListEmptyComponent,
     SpinnerComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

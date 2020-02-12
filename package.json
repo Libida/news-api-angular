@@ -10,6 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "global start": "ng serve & nodemon server.js",
     "deploy": "ng deploy --repo=https://github.com/Libida/news-api-angular --base-href=\"./\""
   },
   "private": true,
@@ -28,7 +29,21 @@
     "ngx-bootstrap": "^5.3.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "method-override": "^3.0.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "winston": "^3.2.1",
+    "chalk": "^3.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.23",
@@ -50,6 +65,8 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "nodemon": "^2.0.1",
+    "mongoose": "^5.7.13"
   }
 }

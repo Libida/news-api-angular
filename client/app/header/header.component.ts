@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   pageTitle = this.pageTitleDefault;
   source;
 
-  headerItemsUnauthorised = [{href: "login", text: "Login"}, {href: "signup", text: "Sign up"}];
+  headerItemsUnauthorised = [{href: "login", text: "Login"}, {href: "sign-up", text: "Sign up"}];
   headerItemsAuthorised = [{href: "profile", text: "Hello"}, {href: "logout", text: "Log out"}];
 
   constructor(private appService: AppService) {
