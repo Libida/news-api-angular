@@ -30,6 +30,14 @@ app.use(cookieParser()); // read cookies (needed for auth)
 //app.use(bodyParser()); // get information from html forms
 // app.set("views", "./src/templates/");
 // app.set("view engine", "pug");
+app.get('*', function(req, res) {
+  res.sendfile('./dist/index.html')
+});
+
+// app.use(function(req, res) {
+//   res.sendFile('./dist/index.html');
+// });
+
 
 // required for passport
 // app.use(session({ secret: "masha" })); // session secret
