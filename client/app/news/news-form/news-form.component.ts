@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Location} from '@angular/common';
 import {FileUploader} from 'ng2-file-upload';
-import {FormBuilder} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Article} from '../article';
 
 const uploadURL = 'http://localhost:8080/api/upload';
 
@@ -11,13 +12,8 @@ const uploadURL = 'http://localhost:8080/api/upload';
   styleUrls: ['./news-form.component.scss']
 })
 export class NewsFormComponent implements OnInit {
-  @Input() authorValue = '';
-  @Input() titleValue = '';
-  @Input() descriptionValue = '';
-  @Input() contentValue = '';
-  @Input() urlValue = '';
-  @Input() urlToImageValue = '';
-  dateValue = new Date();
+  @Input() article: Article = {};
+  @Output() newsFormSubmit = new EventEmitter<object>();
   isImageURL = true;
   isImageFile = false;
   newsForm;
@@ -27,13 +23,19 @@ export class NewsFormComponent implements OnInit {
     itemAlias: 'image'
   });
 
-  constructor(
-    private location: Location,
-    private formBuilder: FormBuilder) {
-    this.newsForm = this.formBuilder.group({});
+  constructor(private location: Location) {
   }
 
   ngOnInit() {
+    this.newsForm = new FormGroup({
+      authorValue: new FormControl(this.article.author),
+      titleValue: new FormControl(this.article.title),
+      descriptionValue: new FormControl(this.article.description),
+      contentValue: new FormControl(this.article.content),
+      urlValue: new FormControl(this.article.url),
+      urlToImageValue: new FormControl(this.article.urlToImage),
+      dateValue: new FormControl(new Date()),
+    });
   }
 
   onCancel() {
@@ -48,6 +50,11 @@ export class NewsFormComponent implements OnInit {
   switchToImageFile() {
     this.isImageURL = false;
     this.isImageFile = true;
+  }
+
+  onSubmit() {
+    console.log('news form(child) submit');
+    this.newsFormSubmit.emit(this.newsForm.value);
   }
 
 }

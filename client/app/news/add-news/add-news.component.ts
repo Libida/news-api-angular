@@ -12,4 +12,9 @@ export class AddNewsComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(value) {
+    console.log('Add news form submit from child');
+    console.dir(value);
+  }
+
 }

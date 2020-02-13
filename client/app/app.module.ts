@@ -19,13 +19,13 @@ import { NewsListingItemComponent } from './news/news-listing-item/news-listing-
 import { LoadMoreComponent } from './load-more/load-more.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
-import { TextareaComponent } from './textarea/textarea.component';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { NewsListEmptyComponent } from './news/news-list-empty/news-list-empty.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 const appRoutes: Routes = [
   {path: 'news', component: NewsListComponent, pathMatch: 'full', data: {title: 'News Listing'}},
@@ -57,12 +57,12 @@ const appRoutes: Routes = [
     LoadMoreComponent,
     NewsFormComponent,
     EditNewsComponent,
-    TextareaComponent,
     FileSelectDirective,
     NewsListEmptyComponent,
     SpinnerComponent,
     LoginComponent,
     RegisterComponent,
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,4 +12,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(value) {
+    console.log('Register form submit from child');
+    console.dir(value);
+  }
+
 }

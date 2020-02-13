@@ -25,4 +25,9 @@ export class EditNewsComponent implements OnInit {
     });
   }
 
+  onSubmit(value) {
+    console.log('Edit news form submit from child');
+    console.dir(value);
+  }
+
 }

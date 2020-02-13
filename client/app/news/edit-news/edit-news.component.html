@@ -1,3 +1,1 @@
-<app-news-form [authorValue]="article.author" [descriptionValue]="article.description"
-               [titleValue]="article.title" [urlToImageValue]="article.urlToImage"
-               [urlValue]="article.url" [contentValue]="article.content"></app-news-form>
+<app-news-form *ngIf="article" [article]="article" (newsFormSubmit)="onSubmit($event)"></app-news-form>

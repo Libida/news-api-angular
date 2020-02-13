@@ -1,14 +1,24 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-12">
-      <form [formGroup]="newsForm" class="form">
+      <form [formGroup]="newsForm" (ngSubmit)="onSubmit()" class="form">
         <div class="row">
           <div class="col-12 col-lg-6">
 
-            <app-input label="Heading" id="news-title" name="title" [value]="titleValue"></app-input>
-            <app-input label="Short description" id="news-description" name="description"
-                       [value]="descriptionValue"></app-input>
-            <app-textarea label="Content" id="news-content" name="content" [value]="contentValue"></app-textarea>
+            <app-input label="Heading" forId="news-title">
+              <input type="text" class="form-control" id="news-title" name="title"
+                     placeholder="Type your value here" formControlName="titleValue">
+            </app-input>
+
+            <app-input label="Short description" forId="news-description">
+              <input type="text" class="form-control" id="news-description" name="description"
+                     placeholder="Type your value here" formControlName="descriptionValue">
+            </app-input>
+
+            <app-input label="Content" forId="news-content">
+              <textarea type="text" class="form-control form-control-textarea" id="news-content" name="content"
+                        placeholder="Type your value here" formControlName="contentValue"></textarea>
+            </app-input>
           </div>
 
           <div class="col-12 col-lg-6">
@@ -27,24 +37,46 @@
               </div>
               <div class="attach-image-data">
                 <div class="attach-image-data-url" [class.active]="isImageURL">
-                  <app-input label="Image" id="news-url-img" name="urlToImage" [value]="urlToImageValue"></app-input>
+
+                  <app-input label="Image" forId="news-url-img">
+                    <input type="text" class="form-control" id="news-url-img" name="urlToImage"
+                           placeholder="Type your value here" formControlName="urlToImageValue">
+                  </app-input>
                 </div>
                 <div class="attach-image-data-upload" [class.active]="isImageFile">
-                  <div class="form-group">
-                    <label for="image-upload">Image</label>
-                    <input type="file" name="image" id="image-upload"ng2FileSelect [uploader]="uploader"
-                           accept="image/x-png,image/gif,image/jpeg" class="form-control form-control-upload"/>
-                    <!--                  <button type="button" (click)="uploader.uploadAll()"-->
-                    <!--                          [disabled]="!uploader.getNotUploadedItems().length">-->
-                    <!--                    Upload-->
-                    <!--                  </button>-->
-                  </div>
+
+                  <app-input label="Image" forId="image-upload">
+                    <input type="file" class="form-control form-control-upload" id="image-upload" name="image"
+                           ng2FileSelect
+                           placeholder="Type your value here" [uploader]="uploader"
+                           accept="image/x-png,image/gif,image/jpeg">
+                  </app-input>
+
+                  <!--                  <button type="button" (click)="uploader.uploadAll()"-->
+                  <!--                          [disabled]="!uploader.getNotUploadedItems().length">-->
+                  <!--                    Upload-->
+                  <!--                  </button>-->
                 </div>
               </div>
             </div>
-            <app-input label="Date" id="news-date" name="date" [value]="dateValue| date: 'medium'"></app-input>
-            <app-input label="Author" id="news-author" name="author" [value]="authorValue"></app-input>
-            <app-input label="News URL" id="news-url" name="url" [value]="urlValue"></app-input>
+            <app-input label="Date" forId="news-date">
+              <input type="text" class="form-control" id="news-date" name="date"
+                     [value]="newsForm.get('dateValue').value | date: 'medium'"
+                     formControlName="amount"
+                     placeholder="Type your value here" formControlName="dateValue" >
+            </app-input>
+
+            <!--                       formControlName="dateValue| date: 'medium'"></app-input>-->
+            <app-input label="Author" forId="news-author">
+              <input type="text" class="form-control" id="news-author" name="author"
+                     placeholder="Type your value here" formControlName="authorValue">
+            </app-input>
+
+            <app-input label="News URL" forId="news-url">
+              <input type="text" class="form-control" id="news-url" name="url"
+                     placeholder="Type your value here" formControlName="urlValue">
+            </app-input>
+
             <div class="form-group form-cta">
               <button type="submit" class="btn btn-primary">Submit</button>
               <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>

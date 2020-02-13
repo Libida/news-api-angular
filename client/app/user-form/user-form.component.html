@@ -1,0 +1,12 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <app-input label="Login" forId="login">
+    <input type="text" class="form-control" id="login" name="login" placeholder="Type your value here" formControlName="login">
+  </app-input>
+  <app-input label="Password" forId="password">
+    <input type="password" class="form-control" id="password" name="password" placeholder="Type your value here" formControlName="password">
+  </app-input>
+  <div class="form-group form-cta">
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

@@ -7,10 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class InputComponent implements OnInit {
   @Input() label: string;
-  @Input() value = '';
-  @Input() name: string;
-  @Input() id: string;
-  @Input() type = 'text';
+  @Input() forId: string;
 
   constructor() { }
 
