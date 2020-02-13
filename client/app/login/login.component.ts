@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from './../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   onSubmit(value) {
     console.log('Login form submit from child');
     console.dir(value);
+    this.authService.login(value);
   }
 
 }

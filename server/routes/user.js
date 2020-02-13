@@ -1,6 +1,6 @@
 module.exports = function (app, passport) {
-    // const passportAuth = passport.authenticate.bind(passport);
-    //
+    const passportAuth = passport.authenticate.bind(passport);
+
     // app.post("/login", passportAuth("local-login", {
     //     successRedirect: "/profile", // redirect to the secure profile section
     //     failureRedirect: "/login", // redirect back to the signup page if there is an error
@@ -11,12 +11,14 @@ module.exports = function (app, passport) {
     //     deprecateForLoggedUser(req, res, "signup");
     // });
     //
-    // app.post("/signup", passport.authenticate("local-signup", {
-    //     successRedirect: "/profile",
-    //     failureRedirect: "/signup",
+    // app.post("/sign-up", passport.authenticate("local-signup", {
+    //     successRedirect: "/",
+    //     failureRedirect: "/sign-up",
     //     failureFlash: true
     // }));
-    //
+
+    app.post("/sign-up", passport.authenticate("local-signup", {failureFlash: true}));
+
     // app.get("/profile", isLoggedIn, function (req, res) {
     //     res.locals.user = req.user;
     //     res.render("profile.pug");

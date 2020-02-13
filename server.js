@@ -27,9 +27,9 @@ require("./config/passport")(passport);
 // }));
 
 app.use(cookieParser()); // read cookies (needed for auth)
-//app.use(bodyParser()); // get information from html forms
-// app.set("views", "./src/templates/");
-// app.set("view engine", "pug");
+app.use(bodyParser()); // get information from html forms
+app.set("views", "./client/app/");
+app.set("view engine", "html");
 // app.get('*', function(req, res) {
 //   res.sendfile('./dist/index.html')
 // });
@@ -40,17 +40,17 @@ app.use(cookieParser()); // read cookies (needed for auth)
 
 
 // required for passport
-// app.use(session({ secret: "masha" })); // session secret
-// app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
-// app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(session({ secret: "masha" })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 // Static files middleware
 app.use(express.static("./dist"));
-//
-// app.use(methodOverride("_method"));
-//
-// require("./config/routes")(app, passport);
+
+app.use(methodOverride("_method"));
+
+require("./config/routes")(app, passport);
 
 // Serve the files
 app.listen(expressPort, (req, res) => {
