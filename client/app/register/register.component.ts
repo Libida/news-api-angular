@@ -14,8 +14,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(value) {
-    console.log('Register form submit from child');
-    console.dir(value);
     this.authService.register(value);
   }
 

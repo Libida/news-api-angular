@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AppService} from '../app.service';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,18 @@ import {AppService} from '../app.service';
 })
 
 export class HeaderComponent implements OnInit {
+  user;
   routerPageTitle;
   pageTitleDefault = { name: '' };
   pageTitle = this.pageTitleDefault;
   source;
+  headerItemsUnauthorised = [{href: 'login', text: 'Login'}, {href: 'sign-up', text: 'Sign up'}];
+  headerItemsAuthorised = [{href: 'profile', text: 'Hello'}, {href: 'logout', text: 'Log out'}];
+  headerItems = this.headerItemsUnauthorised;
 
-  headerItemsUnauthorised = [{href: "login", text: "Login"}, {href: "sign-up", text: "Sign up"}];
-  headerItemsAuthorised = [{href: "profile", text: "Hello"}, {href: "logout", text: "Log out"}];
-
-  constructor(private appService: AppService) {
+  constructor(
+    private appService: AppService,
+    private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -30,6 +34,15 @@ export class HeaderComponent implements OnInit {
 
     this.appService.sourceChange.subscribe(source => {
       this.useSourceAsPageTitle(source);
+    });
+
+    // TODO: reimplement, first draft
+    this.authService.userChange.subscribe(data => {
+      if (data.user._id) {
+        this.headerItems = this.headerItemsAuthorised;
+      } else {
+        this.headerItems = this.headerItemsUnauthorised;
+      }
     });
   }
 

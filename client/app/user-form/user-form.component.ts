@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AuthService} from './../auth.service';
 
 @Component({
   selector: 'app-user-form',
@@ -9,9 +11,14 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class UserFormComponent implements OnInit {
   userForm;
+  errorMsgs = [];
   @Output() userFormSubmit = new EventEmitter<object>();
 
-  constructor(private location: Location) {
+  constructor(
+    private location: Location,
+    private authService: AuthService,
+    private router: Router
+    ) {
     this.userForm = new FormGroup({
       login: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -19,6 +26,17 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.errorMsgsChange.subscribe(data => {
+      this.errorMsgs = data;
+    });
+
+    this.authService.userChange.subscribe((data) => {
+      console.log('before redirect');
+      console.dir(data);
+      if (data.user._id) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   onCancel() {
