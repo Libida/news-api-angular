@@ -33,9 +33,7 @@ app.set("views", "./client/app/");
 app.set("view engine", "html");
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.route('/*').get((req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+
 
 // required for passport
 app.use(session({ secret: "masha" })); // session secret
@@ -49,6 +47,10 @@ app.use(express.static("./dist"));
 app.use(methodOverride("_method"));
 
 require("./config/routes")(app, passport);
+
+app.route('/*').get((req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 // Serve the files
 app.listen(expressPort, (req, res) => {

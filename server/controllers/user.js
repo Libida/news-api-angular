@@ -24,6 +24,7 @@ exports.login = (req, email, password, done) => {
 exports.signup = (req, email, password, done) => {
     if (email)
         email = email.toLowerCase();
+    console.log(`Passport signup email = ${email}, password = ${password}`);
 
     process.nextTick(function () {
         if (!req.user) {
