@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const fs = require("fs");
 const passport = require("passport");
 const flash = require("connect-flash");
@@ -30,14 +31,11 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.set("views", "./client/app/");
 app.set("view engine", "html");
-// app.get('*', function(req, res) {
-//   res.sendfile('./dist/index.html')
-// });
 
-// app.use(function(req, res) {
-//   res.sendFile('./dist/index.html');
-// });
-
+app.use(express.static(path.join(__dirname, 'dist')));
+app.route('/*').get((req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 // required for passport
 app.use(session({ secret: "masha" })); // session secret

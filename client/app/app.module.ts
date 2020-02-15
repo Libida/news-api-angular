@@ -19,7 +19,7 @@ import { NewsListingItemComponent } from './news/news-listing-item/news-listing-
 import { LoadMoreComponent } from './load-more/load-more.component';
 import { NewsFormComponent } from './news/news-form/news-form.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { NewsListEmptyComponent } from './news/news-list-empty/news-list-empty.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -57,7 +57,6 @@ const appRoutes: Routes = [
     LoadMoreComponent,
     NewsFormComponent,
     EditNewsComponent,
-    FileSelectDirective,
     NewsListEmptyComponent,
     SpinnerComponent,
     LoginComponent,
@@ -73,6 +72,7 @@ const appRoutes: Routes = [
     ),
     HttpClientModule,
     ReactiveFormsModule,
+    FileUploadModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
