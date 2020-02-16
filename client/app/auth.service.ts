@@ -10,11 +10,6 @@ import {User} from './user';
 export class AuthService {
   userDetails: User;
   config = {headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')};
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    })
-  };
   errorMsgsChange: Subject<string[]> = new Subject<string[]>();
   userChange: Subject<User> = new Subject<User>();
 
@@ -25,21 +20,19 @@ export class AuthService {
   }
 
   login(value) {
-    console.log('auth service login');
-    console.dir(value);
-    // this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
-    this.http.post('/sign-in', JSON.stringify(value), this.httpOptions).subscribe((data) => {
-      console.log('login post done!!');
-      console.dir(data);
-    });
+    this.auth('/api/login', value);
   }
 
   register(value) {
+    this.auth('/api/register', value);
+  }
+
+  auth(url, value) {
     const body = new HttpParams()
       .set('email', value.login)
       .set('password', value.password);
 
-    this.http.post<User>('/api/users', body, this.config).pipe(
+    this.http.post<User>(url, body, this.config).pipe(
       map((data: User) => {
         const procceedResponse: User = {
           user: {

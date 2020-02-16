@@ -1,8 +1,9 @@
 module.exports = (app, passport) => {
-  const path = require('path');
-  const usersPath = '/api/users';
+  const registerPath = '/api/register';
+  const loginPath = '/api/login';
 
-  app.use(usersPath, require("./../server/routes/user")(app, passport, usersPath));
+  app.use(registerPath, require("../server/routes/register")(app, passport, registerPath));
+  app.use(loginPath, require("../server/routes/login")(app, passport, loginPath));
 
   require("./../server/routes/news-article")(app);
   // require("./../server/routes/user")(app, passport);

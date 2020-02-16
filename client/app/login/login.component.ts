@@ -14,8 +14,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(value) {
-    console.log('Login form submit from child');
-    console.dir(value);
     this.authService.login(value);
   }
 
