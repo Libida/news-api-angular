@@ -1,9 +1,9 @@
 module.exports = (app) => {
     const newsArticleController = require("../controllers/news-article");
-    const urlBase = "/news-articles";
+    const urlBase = "/api/news-articles";
     const urlWithId = `${urlBase}/:newsArticleId`;
 
-    app.post("/profile-add-news", newsArticleController.create);
+    app.post(`${urlBase}/add`, newsArticleController.create);
 
     app.get(urlBase, newsArticleController.findAll);
 
@@ -11,6 +11,6 @@ module.exports = (app) => {
 
     app.put(urlWithId, newsArticleController.update);
 
-    app.post("/profile-delete-news", newsArticleController.delete);
+    app.delete(`${urlBase}/delete/`, newsArticleController.delete);
 
 };

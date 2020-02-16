@@ -1,4 +1,6 @@
 export class Article {
+  _id?: string;
+  type?: string;
   source?: {
     id?: string,
     name?: string
@@ -10,4 +12,6 @@ export class Article {
   urlToImage?: string;
   publishedAt?: string;
   content?: string;
+  errorMessages?: [];
+  successMessages?: [];
 }

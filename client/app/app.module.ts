@@ -37,7 +37,12 @@ const appRoutes: Routes = [
     data: {title: 'News Listing'}
   },
   {
-    path: 'article/:source/:title',
+    path: 'article/global/:source/:title',
+    component: NewsDetailsComponent,
+    data: {title: 'News Details'}
+  },
+  {
+    path: 'article/local/:id',
     component: NewsDetailsComponent,
     data: {title: 'News Details'}
   },
@@ -55,7 +60,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'edit-news/:source/:title',
+    path: 'edit-news/:id',
     component: EditNewsComponent,
     pathMatch: 'full',
     data: {title: 'Edit news', pageTitle: 'Edit news'},

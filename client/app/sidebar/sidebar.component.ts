@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {AppService} from '../app.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,19 +14,30 @@ export class SidebarComponent implements OnInit {
   createdByMeIsChecked;
   isDropdownDisabled = false;
   filterForm;
+  isAuthorised;
 
   constructor(
     private appService: AppService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private authService: AuthService) {
     this.filterForm = this.formBuilder.group({
       query: ''
     });
   }
 
   ngOnInit() {
-    this.appService.getSources().subscribe((data) => {
-        this.dropdownItems = data;
-      });
+    this.isAuthorised = this.authService.isAuthorized();
+    this.dropdownItems = this.appService.getAllSources();
+    const selectedSource = this.appService.getSelectedSource();
+    this.selectedDropdownItem = selectedSource && selectedSource.name;
+
+    this.authService.userChange.subscribe(data => {
+      this.isAuthorised = this.authService.isAuthorized();
+    });
+
+    this.appService.allSourcesChange.subscribe((data) => {
+      this.dropdownItems = data;
+    });
 
     this.appService.sourceChange.subscribe((data) => {
       this.selectedDropdownItem = data.name;
@@ -36,8 +48,10 @@ export class SidebarComponent implements OnInit {
       this.isDropdownDisabled = value;
       if (value) {
         this.appService.setSourceToLocal();
+        this.appService.getLocalArticles(true);
       } else {
-        alert('TODO');
+        this.appService.setSourceToFirst();
+        this.appService.getLocalArticles();
       }
     });
   }

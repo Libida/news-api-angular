@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsService} from './../news.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-news',
@@ -7,14 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private newsService: NewsService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(value) {
-    console.log('Add news form submit from child');
-    console.dir(value);
+    this.newsService.addArticle(value);
   }
 
 }

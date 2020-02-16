@@ -31,8 +31,6 @@ export class UserFormComponent implements OnInit {
     });
 
     this.authService.userChange.subscribe((data) => {
-      console.log('before redirect');
-      console.dir(data);
       if (data.user._id) {
         this.router.navigate(['/']);
       }

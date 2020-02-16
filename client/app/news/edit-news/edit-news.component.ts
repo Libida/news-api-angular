@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app.service';
+import {NewsService} from './../news.service';
 import {Article} from '../article';
 
 @Component({
@@ -13,21 +14,22 @@ export class EditNewsComponent implements OnInit {
 
   constructor(
     private root: ActivatedRoute,
-    private appService: AppService) { }
+    private appService: AppService,
+    private newsService: NewsService
+    ) { }
 
   ngOnInit() {
     this.root.paramMap.subscribe(params => {
-      this.appService.getArticleByParams(params);
+      this.newsService.getLocalArticleByParams(params);
     });
 
-    this.appService.articleChange.subscribe((data) => {
+    this.newsService.localArticleChange.subscribe((data) => {
       this.article = data;
     });
   }
 
   onSubmit(value) {
-    console.log('Edit news form submit from child');
-    console.dir(value);
+    this.newsService.editLocalArticle(value, this.article._id);
   }
 
 }

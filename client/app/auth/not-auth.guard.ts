@@ -14,7 +14,7 @@ export class NotAuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const userData = this.authService.getUserData();
 
-    if (!userData.user.email) {
+    if (!userData.user || !userData.user.email) {
       return true;
     } else {
       this.router.navigate(['/']);

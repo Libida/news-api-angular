@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AppService} from '../app.service';
 
 @Component({
   selector: 'app-dropdown',
@@ -12,7 +11,7 @@ export class DropdownComponent implements OnInit {
   @Input() isDisabled;
   @Output() dropdownClick = new EventEmitter<string>();
 
-  constructor(private appService: AppService) { }
+  constructor() { }
 
   ngOnInit() {
   }

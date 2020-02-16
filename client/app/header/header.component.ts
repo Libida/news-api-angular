@@ -25,13 +25,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.updateHeaderItems(this.authService.getUserData());
+    this.source = this.appService.getSelectedSource();
+    this.useSourceAsPageTitle(this.source);
 
     this.appService.routerPageTitleChange.subscribe(value => {
       this.useRouterTitleAsPageTitle(value);
-    });
-
-    this.appService.getSource().subscribe(source => {
-      this.useSourceAsPageTitle(source);
     });
 
     this.appService.sourceChange.subscribe(source => {

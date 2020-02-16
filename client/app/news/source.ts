@@ -1,6 +1,6 @@
 export class Source {
   id?: string;
-  name: string;
+  name?: string;
   description?: string;
   url?: string;
   category?: string;
