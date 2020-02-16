@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AppService} from '../app.service';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +9,14 @@ import {AuthService} from '../auth.service';
 })
 
 export class HeaderComponent implements OnInit {
-  user;
+  isAuthorised;
+  userEmail;
   routerPageTitle;
   pageTitleDefault = { name: '' };
   pageTitle = this.pageTitleDefault;
   source;
-  headerItemsUnauthorised = [{href: 'login', text: 'Login'}, {href: 'sign-up', text: 'Sign up'}];
-  headerItemsAuthorised = [{href: 'profile', text: 'Hello'}, {href: 'logout', text: 'Log out'}];
-  headerItems = this.headerItemsUnauthorised;
+  headerItemsUnauthorised = [{text: 'Login', href: 'login'}, {text: 'Sign up', href: 'sign-up'}];
+  headerItems;
 
   constructor(
     private appService: AppService,
@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.updateHeaderItems(this.authService.getUserData());
+
     this.appService.routerPageTitleChange.subscribe(value => {
       this.useRouterTitleAsPageTitle(value);
     });
@@ -36,13 +38,8 @@ export class HeaderComponent implements OnInit {
       this.useSourceAsPageTitle(source);
     });
 
-    // TODO: reimplement, first draft
     this.authService.userChange.subscribe(data => {
-      if (data.user._id) {
-        this.headerItems = this.headerItemsAuthorised;
-      } else {
-        this.headerItems = this.headerItemsUnauthorised;
-      }
+      this.updateHeaderItems(data);
     });
   }
 
@@ -65,6 +62,20 @@ export class HeaderComponent implements OnInit {
       this.source = source;
       this.pageTitle = source;
     }
+  }
+
+  updateHeaderItems(data) {
+    if (data.user && data.user.email) {
+      this.isAuthorised = true;
+      this.userEmail = data.user.email;
+    } else {
+      this.isAuthorised = false;
+      this.userEmail = '';
+    }
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

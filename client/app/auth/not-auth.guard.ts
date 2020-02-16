@@ -6,14 +6,15 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class NotAuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const userData = this.authService.getUserData();
 
-    if (localStorage.user) {
+    if (!userData.user.email) {
       return true;
     } else {
       this.router.navigate(['/']);
@@ -21,4 +22,5 @@ export class AuthGuard implements CanActivate {
     }
   }
 }
+
 

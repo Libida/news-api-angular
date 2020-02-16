@@ -12,9 +12,25 @@
           </div>
           <div class="col-6">
             <ul class="header-section__list header-section_top-auth">
+              <ng-container *ngIf="!isAuthorised">
+                <li *ngFor="let headerItem of headerItemsUnauthorised; let isLast = last;" class="list-inline-item">
+                  <a [routerLink]="headerItem.href" [class.btn]="isLast"
+                     [class.btn-outline-primary]="isLast">{{headerItem.text}}</a>
+                </li>
+              </ng-container>
+
+              <ng-container *ngIf="isAuthorised">
+                <li class="list-inline-item">
+                  <span>Hello {{userEmail}}</span>
+                </li>
+                <li class="list-inline-item">
+                  <span class="btn btn-outline-primary" (click)="logout()">Log out</span>
+                </li>
+              </ng-container>
+
               <li *ngFor="let headerItem of headerItems; let isLast = last;" class="list-inline-item">
-                <a [routerLink]="headerItem.href" [class.btn]="isLast"
-                   [class.btn-outline-primary]="isLast">{{headerItem.text}}</a>
+                <a [attr.href]="headerItem.href ? headerItem.href : null" [class.btn]="isLast"
+                   [class.btn-outline-primary]="isLast" (click)="this[headerItem.onClick]()">{{headerItem.text}}</a>
               </li>
             </ul>
           </div>

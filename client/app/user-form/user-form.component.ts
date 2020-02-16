@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {AuthService} from './../auth.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-user-form',

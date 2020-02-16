@@ -1,5 +1,5 @@
 export class User {
-  user: {
+  user?: {
     email?: string,
     _id?: string,
     local?: {
