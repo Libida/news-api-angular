@@ -31,7 +31,7 @@ export class UserFormComponent implements OnInit {
     });
 
     this.authService.userChange.subscribe((data) => {
-      if (data.user._id) {
+      if (this.authService.getUserId()) {
         this.router.navigate(['/']);
       }
     });

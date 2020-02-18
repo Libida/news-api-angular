@@ -24,7 +24,7 @@ export class NewsDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.authService.userChange.subscribe(data => {
-      this.checkIfLocalArticle(data);
+      this.checkIfLocalArticle();
     });
 
     this.appService.articleChange.subscribe((data) => {
@@ -33,11 +33,10 @@ export class NewsDetailsComponent implements OnInit {
 
     this.newsService.localArticleChange.subscribe((data) => {
       this.article = data || {};
-      this.checkIfLocalArticle(this.authService.getUserData());
+      this.checkIfLocalArticle();
     });
 
     this.root.paramMap.subscribe(params => {
-      console.dir(params);
       if (params.get('id')) {
         this.newsService.getLocalArticleByParams(params);
       } else {
@@ -46,8 +45,8 @@ export class NewsDetailsComponent implements OnInit {
     });
   }
 
-  checkIfLocalArticle(userData) {
-    this.user = userData.user.email;
+  checkIfLocalArticle() {
+    this.user = this.authService.getUserEmail();
     this.isLocalArticle = (this.article.author === this.user);
   }
 

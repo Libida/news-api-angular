@@ -5,19 +5,22 @@
         <div class="row">
           <div class="col-12 col-lg-6">
 
-            <app-input label="Heading" forId="news-title">
+            <div class="form-group">
+              <label for="news-title">Heading</label>
               <input type="text" class="form-control" id="news-title" name="title" placeholder="Type your value here" formControlName="title">
-            </app-input>
+            </div>
 
-            <app-input label="Short description" forId="news-description">
+            <div class="form-group">
+              <label for="news-description">Short description</label>
               <input type="text" class="form-control" id="news-description" name="description"
                      placeholder="Type your value here" formControlName="description">
-            </app-input>
+            </div>
 
-            <app-input label="Content" forId="news-content">
+            <div class="form-group">
+              <label for="news-content">Content</label>
               <textarea type="text" class="form-control form-control-textarea" id="news-content" name="content"
                         placeholder="Type your value here" formControlName="content"></textarea>
-            </app-input>
+            </div>
           </div>
 
           <div class="col-12 col-lg-6">
@@ -58,26 +61,31 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--            </div>-->
-            <app-input label="Image" forId="news-url-img">
+            <div class="form-group">
+              <label for="news-url-img">Image</label>
               <input type="text" class="form-control" id="news-url-img" name="urlToImage"
                      placeholder="Type your value here" formControlName="urlToImage">
-            </app-input>
-            <app-input label="Date" forId="news-date">
+            </div>
+
+            <div class="form-group">
+              <label for="news-date">Date</label>
               <input type="text" class="form-control" id="news-date" name="date"
                      [value]="newsForm.get('publishedAt').value | date: 'medium'"
                      formControlName="amount"
                      placeholder="Type your value here" formControlName="publishedAt" readonly>
-            </app-input>
+            </div>
 
-            <app-input label="Author" forId="news-author">
+            <div class="form-group">
+              <label for="news-author">Author</label>
               <input type="text" class="form-control" id="news-author" name="author"
                      placeholder="Type your value here" formControlName="author" readonly>
-            </app-input>
+            </div>
 
-            <app-input label="News URL" forId="news-url">
+            <div class="form-group">
+              <label for="news-url">News URL</label>
               <input type="text" class="form-control" id="news-url" name="url"
                      placeholder="Type your value here" formControlName="url" readonly>
-            </app-input>
+            </div>
 
             <div class="form-group form-cta">
               <button type="submit" class="btn btn-primary">Submit</button>

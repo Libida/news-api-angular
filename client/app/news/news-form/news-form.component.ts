@@ -35,7 +35,7 @@ export class NewsFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.localArticleAuthor = this.authService.getUserData().user.email;
+    this.localArticleAuthor = this.authService.getUserEmail();
 
     this.newsForm = new FormGroup({
       author: new FormControl(this.article.author || this.localArticleAuthor),
@@ -48,14 +48,10 @@ export class NewsFormComponent implements OnInit {
     });
 
     this.newsService.articleWasCreated.subscribe((data: Article) => {
-      console.log('articleWasCreated');
-      console.dir(data);
       this.redirectToNewsDetails(data);
     });
 
     this.newsService.localArticleChange.subscribe((data: Article) => {
-      console.log('localArticleChange');
-      console.dir(data);
       this.redirectToNewsDetails(data);
     });
   }

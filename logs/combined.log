@@ -1496,3 +1496,122 @@
   label: 'News articles Rest API',
   timestamp: '2020-02-16T21:28:32.711Z'
 }
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:17:17.218Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:21:40.606Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:21:44.298Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:21:44.302Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:23:40.896Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:23:40.911Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:32:51.035Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:32:52.312Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:32:52.315Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:34:39.116Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T14:34:39.132Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T19:24:48.345Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T19:24:48.361Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T19:24:51.123Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T19:24:53.369Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T19:24:54.549Z'
+}
+{
+  level: 'info',
+  message: '/api/news-articles',
+  service: 'user-service',
+  label: 'News articles Rest API',
+  timestamp: '2020-02-18T19:24:54.552Z'
+}

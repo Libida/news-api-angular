@@ -8,8 +8,8 @@
     "build": "ng build --aot",
     "build prod": "ng build --aot --prod",
     "test": "ng test",
+    "e2e test": "ng e2e --port 4201",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "global start": "ng serve --aot & nodemon server.js",
     "deploy": "ng deploy --repo=https://github.com/Libida/news-api-angular --base-href=\"./\""
   },
@@ -35,6 +35,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "method-override": "^3.0.0",
+    "ng-mocks": "^9.0.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^5.3.2",
     "passport": "^0.4.0",

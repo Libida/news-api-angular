@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NewsListingItemComponent } from './news-listing-item.component';
+import {getGlobalArticle, getUser} from '../../__mock/mock-utils';
 
 describe('NewsListingItemComponent', () => {
   let component: NewsListingItemComponent;
@@ -8,7 +10,8 @@ describe('NewsListingItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsListingItemComponent ]
+      declarations: [ NewsListingItemComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   }));
@@ -16,6 +19,7 @@ describe('NewsListingItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewsListingItemComponent);
     component = fixture.componentInstance;
+    component.article = getGlobalArticle();
     fixture.detectChanges();
   });
 

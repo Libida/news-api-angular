@@ -17,21 +17,19 @@ export class NewsListingItemComponent implements OnInit {
   constructor(private authService: AuthService, private appService: AppService) { }
 
   ngOnInit() {
-    this.checkIfLocalArticle(this.authService.getUserData());
+    this.checkIfLocalArticle();
 
     this.authService.userChange.subscribe(data => {
-      this.checkIfLocalArticle(data);
+      this.checkIfLocalArticle();
     });
   }
 
-  checkIfLocalArticle(userData) {
-    this.user = userData.user.email;
+  checkIfLocalArticle() {
+    this.user = this.authService.getUserEmail();
     this.isLocalArticle = (this.article.author === this.user);
   }
 
   deleteArticle(articleId) {
     this.appService.deleteLocalArticle(articleId);
   }
-
-
 }

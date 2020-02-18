@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.updateHeaderItems(this.authService.getUserData());
+    this.updateHeaderItems();
     this.source = this.appService.getSelectedSource();
     this.useSourceAsPageTitle(this.source);
 
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     });
 
     this.authService.userChange.subscribe(data => {
-      this.updateHeaderItems(data);
+      this.updateHeaderItems();
     });
   }
 
@@ -62,10 +62,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  updateHeaderItems(data) {
-    if (data.user && data.user.email) {
+  updateHeaderItems() {
+    const userEmail = this.authService.getUserEmail();
+
+    if (userEmail) {
       this.isAuthorised = true;
-      this.userEmail = data.user.email;
+      this.userEmail = userEmail;
     } else {
       this.isAuthorised = false;
       this.userEmail = '';

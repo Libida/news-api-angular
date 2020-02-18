@@ -95,7 +95,8 @@
             "styles": [
               "client/style.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "codeCoverage": true
           }
         },
         "lint": {

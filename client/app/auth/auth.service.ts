@@ -20,13 +20,25 @@ export class AuthService {
 
   getUserData() {
     const userData: User = {};
-    userData.user = JSON.parse(localStorage.getItem('user'));
+    userData.user = JSON.parse(localStorage.getItem('user')) || {};
 
     return userData;
   }
 
+  getUser() {
+    return this.getUserData().user || {};
+  }
+
+  getUserId() {
+    return this.getUser()._id || {};
+  }
+
+  getUserEmail() {
+    return this.getUser().email || '';
+  }
+
   isAuthorized() {
-    return !!this.getUserData().user._id;
+    return !!(this.getUser() && this.getUser()._id);
   }
 
   login(value) {

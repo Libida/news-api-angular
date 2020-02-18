@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -140,7 +140,7 @@ export class AppService {
     this.http.get<Article[]>('/api/news-articles').pipe(
       map((data) => {
         const outcomeData = [];
-        const sessionAuthor = this.userData.user.email;
+        const sessionAuthor = this.authService.getUserEmail();
 
         data.forEach((item) => {
           item.type = 'local';
@@ -268,7 +268,7 @@ export class AppService {
   }
 
   updateAllSourcesWithLocal() {
-    const userEmail = this.userData.user && this.userData.user.email;
+    const userEmail = this.authService.getUserEmail();
 
     if (userEmail) {
       this.localSource.url = userEmail;

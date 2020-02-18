@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddNewsComponent } from './add-news.component';
+import {Component} from '@angular/core';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {NewsFormComponent} from '../news-form/news-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('AddNewsComponent', () => {
   let component: AddNewsComponent;
@@ -8,7 +13,8 @@ describe('AddNewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddNewsComponent ]
+      declarations: [ AddNewsComponent, NewsFormComponent ],
+      imports: [HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule]
     })
     .compileComponents();
   }));

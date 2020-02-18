@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DropdownComponent } from './dropdown.component';
+import {BsDropdownModule} from 'ngx-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponent;
@@ -8,7 +10,8 @@ describe('DropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DropdownComponent ]
+      declarations: [ DropdownComponent ],
+      imports: [BsDropdownModule.forRoot(), BrowserAnimationsModule]
     })
     .compileComponents();
   }));
