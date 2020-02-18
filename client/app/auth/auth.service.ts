@@ -14,8 +14,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.userChange.subscribe(data => {
-      localStorage.setItem('user', JSON.stringify(data.user));
+      this.setUserData(data);
     });
+  }
+
+  setUserData(data) {
+    localStorage.setItem('user', JSON.stringify(data.user));
   }
 
   getUserData() {

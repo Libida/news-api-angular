@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import {browser, by, element, logging} from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -8,16 +8,19 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should redirect to Login on Login cta click', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('angular-test app is running!');
+    const topCtas = element.all(by.css('.header-section_top-auth .list-inline-item'));
+    const loginLink = topCtas.get(0);
+    loginLink.click();
+    expect(page.getTitleText()).toEqual('Login');
   });
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+  it('should show 404 page if url is incorrect', () => {
+    browser.getCurrentUrl().then((url) => {
+      browser.get(`${url}/incorrect_url`);
+      const status404 = element.all(by.css('#not-found-status'));
+      expect(status404.get(0).getText()).toEqual('404');
+    });
   });
 });
